@@ -1,0 +1,52 @@
+
+
+import java.util.HashSet;
+import java.util.Objects;
+
+/* 다음 클래스의 인스턴스가 HashSet<Person>컬렉션 인스턴스에 저장될 때, 
+ * 이름과 나이가 같으면 동일 인스턴스로 판단이 되도록 hashcode와 equals메소드를
+ * 오버라이딩 해보자 
+ */
+
+class Person{
+	private String name;
+	private int age;
+	public Person(String name, int age) {
+		this.name=name;
+		this.age=age;
+	}
+	public String toString() {
+		return name+"("+age+"세)";
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Person) {
+			Person tmp = (Person) obj;
+			return name.equals(tmp.name) && age == tmp.age;
+		} else {
+			return false;
+		}
+	}
+		
+	@Override
+	public int hashCode() {
+		return (name.hashCode());
+		//return Objects.hash(name);
+	}
+			
+}
+public class Exercise23_1 {
+
+	public static void main(String[] args) {
+		HashSet<Person> set = new HashSet<>();
+		set.add(new Person("김철수",99));
+		set.add(new Person("김철수",89));
+		set.add(new Person("박영희",99));
+		set.add(new Person("박영희",99));
+		
+		for(Person p : set)
+			System.out.println(p.toString()+'\t');
+		
+	}
+
+}
