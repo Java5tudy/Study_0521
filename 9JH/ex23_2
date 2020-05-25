@@ -1,0 +1,39 @@
+package collectionFramework3;
+
+import java.util.Comparator;
+import java.util.TreeSet;
+
+class Exercise implements Comparable <Exercise> {
+	int num;
+	
+	public Exercise(int num) { this.num = num; }
+	
+	@Override
+	public int compareTo(Exercise e) {
+		return this.num - e.num;
+	}
+}
+class ExerciseComparator implements Comparator<Exercise>{
+	public int compare(Exercise e1, Exercise e2) {
+		return e2.num - e1.num;
+	}
+}
+
+public class Exercise23_2 {
+	public static void main(String[]args) {
+		TreeSet<Integer> tr = new TreeSet<>();
+		tr.add(30);
+		tr.add(10);
+		tr.add(20);
+		System.out.println(tr);
+		System.out.println();
+		
+		TreeSet<Exercise> tr2 = new TreeSet<>(new ExerciseComparator());
+		tr2.add(new Exercise(30));
+		tr2.add(new Exercise(10));
+		tr2.add(new Exercise(20));
+		
+		for(Exercise ee : tr2)
+			System.out.println(ee);
+	}
+}
